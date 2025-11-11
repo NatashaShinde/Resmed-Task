@@ -1,7 +1,7 @@
 <?php
-// Pull fields
+
 $title = get_field('slider_title');
-$bg = get_field('slider_bg_color'); // values: white, black, ebebeb, b02543
+$bg = get_field('slider_bg_color'); 
 $wysiwyg = get_field('slider_wysiwyg');
 
 $images = array();
@@ -9,7 +9,7 @@ for ($i = 1; $i <= 3; $i++) {
     $img = get_field("slider_image_{$i}");
     $cap = get_field("slider_caption_{$i}");
     if ($img) {
-        // $img could be array if return format is array (recommended)
+        
         $images[] = array(
             'url' => is_array($img) ? $img['url'] : $img,
             'alt' => is_array($img) ? ($img['alt'] ?? '') : '',
@@ -19,14 +19,13 @@ for ($i = 1; $i <= 3; $i++) {
 }
 
 if (empty($title) && empty($images) && empty($wysiwyg)) {
-    // nothing to render
+  
     return;
 }
 
 // Determine text color for left side
 $left_text_color = ($bg === 'white' || $bg === 'ebebeb') ? 'black' : 'white';
 
-// Map bg keys to actual CSS color
 $bg_map = array(
     'white' => '#ffffff',
     'black' => '#000000',
